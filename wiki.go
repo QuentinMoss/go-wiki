@@ -17,3 +17,12 @@ func loadPage(title string) *Page {
   body, _ := ioutil.ReadFile(filename)
   return &Page{Title: title, Body: body}
 }
+
+func loadPage(title string) (*Page, error) {
+  filename := title + ".txt"
+  body, err := ioutil.ReadFile(filename)
+  if err != nil {
+      return nil, err
+  }
+  return &Page{Title: title, Body: body}, nil
+}
